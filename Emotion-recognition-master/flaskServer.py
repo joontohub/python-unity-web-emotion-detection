@@ -42,25 +42,25 @@ def allowed_file(filename):
 @app.route('/' , methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        file = request.files['myimage']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # file = request.files['myimage']
+        # if file and allowed_file(file.filename):
+        #     filename = secure_filename(file.filename)
+        #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            print("activate picture emotion detector")
-            result_emotion, result_prob = picture_detector.Detector()
-            result_prob = str(result_prob)
-            tag = "T"
-            data = tag + result_emotion + tag + result_prob
-            response = app.response_class(
-                response=json.dumps(data),
-                status=200,
-                mimetype='application/json'
-            )
+        #     print("activate picture emotion detector")
+        #     result_emotion, result_prob = picture_detector.Detector()
+        #     result_prob = str(result_prob)
+        #     tag = "T"
+        #     data = tag + result_emotion + tag + result_prob
+        response = app.response_class(
+            response=json.dumps(data),
+            status=200,
+            mimetype='application/json'
+        )
 
-            print( "json data :::: " , response)
-            return response
-            # for browser, add 'redirect' function on top of 'url_for'
+        print( "json data :::: " , response)
+        return response
+        # for browser, add 'redirect' function on top of 'url_for'
             #return url_for("result_page", data=data)
     else:
         return "Hello world it is for post "
