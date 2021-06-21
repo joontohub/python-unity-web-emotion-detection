@@ -35,7 +35,7 @@ def Detector():
         if(".jpg" or ".jpeg" or ".png" or ".gif" in image_name):
             frame_name = image_name
             
-
+            print(frame_name, ' -------------------')
 
     # starting video streaming
     cv2.namedWindow('your_face')
@@ -119,10 +119,17 @@ def Detector():
 
     camera.release()
     cv2.destroyAllWindows()
-    file_move(frame_name)
+    #file_move(frame_name)
 
     return max_emotion, max_prob
 def file_move(frame_name):
     shutil.move(image_path + '\\' + frame_name , saved_path + '\\' + frame_name)
 
 
+result_emotion, result_prob = Detector()
+
+print('-----------------------------')
+print(result_emotion, ' result emotion')
+print('-----------------------------')
+print(result_prob,'result probability')
+print('-----------------------------')
